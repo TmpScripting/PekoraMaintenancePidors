@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en"><div id="in-page-channel-node-id" data-channel-name="in_page_channel_NjGHV-"></div><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance</title>
+    <link href="./Maintenance_files/css2" rel="stylesheet">
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: radial-gradient(circle, #0a0f2c, #020617);
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    position: relative;
+    top: 50px;
+}
+
+.album-art {
+    width: 350px;
+    height: 350px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    right: 90px;
+}
+
+#album-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.song-info {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.track-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    top: 220px;
+    right: 410px;
+}
+
+.artist {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    position: relative;
+    top: 230px;
+    right: 410px;
+}
+
+.lyrics-wrapper {
+    position: relative;
+    height: 300px;
+    width: 600px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    right: 280px;
+}
+
+.lyrics-display {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.9);
+    overflow: hidden;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 250px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    bottom: 500px;
+    left: 575px;
+}
+
+.maintenance-text {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 10px;
+    position: relative;
+    bottom: 470px;
+    left: 575px;
+}
+
+.lyrics-display p {
+    margin: 10px 0;
+    transition: color 0.3s, font-size 0.3s;
+}
+
+.active-lyric {
+    color: white;
+    font-size: 32px;
+}
+
+.inactive-lyric {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 24px;
+}
+
+.lyrics-fade {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(to bottom, rgba(10, 15, 44, 0.8), rgba(10, 15, 44, 0));
+}
+
+.top-fade {
+    top: 0;
+}
+
+.bottom-fade {
+    bottom: 0;
+    transform: rotate(180deg);
+}
+
+.play-button-container {
+    margin-top: 50px;
+    text-align: center;
+    position: relative;
+    right: 290px;
+}
+
+.play-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.play-button img {
+    width: 60px;
+    height: 60px;
+}
+</style>
+<body>
+    <div class="header">
+        <p class="maintenance-text">Pekora is down for macchiato!</p>
+    </div>
+    
+    <div class="container">
+        <div class="main-content">
+            <div class="album-art">
+                <video id="album-video" loop="" muted="" __idm_id__="1073153">
+                    <source src="video.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="song-info">
+                <p class="track-title">Espresso Macchiato</p>
+                <p class="artist">Tommy Cash</p>
+            </div>
+
+            <div class="lyrics-wrapper">
+                <div class="lyrics-fade top-fade"></div>
+                <div class="lyrics-display"></div>
+                <div class="lyrics-fade bottom-fade"></div>
+            </div>
+        </div>
+
+        <div class="play-button-container">
+            <button id="play-button" class="play-button">
+                <img src="./Maintenance_files/play.png" alt="Play Button">
+            </button>
+        </div>
+    </div>
+    <audio id="audio-player" src="sound.mp3" preload="auto" __idm_id__="1073154"></audio>
+    <script>
+        const audioPlayer = document.getElementById('audio-player');
+        const videoPlayer = document.getElementById('album-video');
+        const lyricsContainer = document.querySelector('.lyrics-display');
+        const playButton = document.getElementById('play-button');
+
+        const lrcData = [
+		  {
+			"time": 0,
+			"lyric": "[Tommy Cash - Espresso Macchiato]"
+		  },
+		  {
+			"time": 0.01,
+			"lyric": "Pekora maintenance version by TheMaxPanch"
+		  },
+		  {
+			"time": 10,
+			"lyric": " "
+		  },
+		  {
+			"time": 12,
+			"lyric": " "
+		  },
+      {
+			"time": 11.99,
+			"lyric": " "
+		  },
+      {
+			"time": 17.99,
+			"lyric": " "
+		  },
+		  {
+			"time": 18,
+			"lyric": " "
+		  },
+		  {
+			"time": 18,
+			"lyric": "Мы пидоры, мы пидоры"
+		  },
+		  {
+			"time": 21.5,
+			"lyric": "Сосущие залупу и ебущиеся в сракотан пидоры"
+		  },
+		  {
+			"time": 27.2,
+			"lyric": "Сиськи Доры"
+		  },
+		  {
+			"time": 29.6,
+			"lyric": "Не поднимают наши пениса"
+		  },
+		  {
+			"time": 34,
+			"lyric": "Мы пидоры, мы пидоры"
+		  },
+		  {
+			"time": 37.5,
+			"lyric": "Сосущие залупу и ебущиеся в сракотан пидоры"
+		  },
+		  {
+			"time": 43.2,
+			"lyric": "Сиськи Доры"
+		  },
+		  {
+			"time": 45.5,
+			"lyric": "Не поднимают наши"
+		  },
+		  {
+			"time": 48.5,
+			"lyric": "Но поднимают ваши"
+		  },
+      {
+			"time": 50.5,
+			"lyric": " "
+		  },
+		  {
+			"time": 50.8,
+			"lyric": " "
+		  },
+      {
+			"time": 50.2,
+			"lyric": " "
+		  },
+      {
+			"time": 57.9,
+			"lyric": " "
+		  },
+		  {
+			"time": 57.99,
+			"lyric": " "
+		  },
+		  {
+			"time": 57.5,
+			"lyric": "Ещё с первого класса"
+		  },
+		  {
+			"time": 60,
+			"lyric": "Пидоры, пидорасы"
+		  },
+		  {
+			"time": 62,
+			"lyric": "Меня буквально окружали всюду"
+		  },
+		  {
+			"time": 65.7,
+			"lyric": "С косметикой на глазках"
+		  },
+		  {
+			"time": 68,
+			"lyric": "Сосали одноразки"
+		  },
+		  {
+			"time": 70,
+			"lyric": "А я сказал, что делать так не буду"
+		  },
+      {
+			"time": 73.7,
+			"lyric": "Вдруг они вскочили, залупы надрочили"
+		  },
+      {
+			"time": 77.5,
+			"lyric": "No stresso, no stresso"
+		  },
+      {
+			"time": 79.5,
+			"lyric": "Сосни-ка нам пинессо"
+		  },
+      {
+			"time": 82,
+			"lyric": "Мы пидоры, мы пидоры"
+		  },
+		  {
+			"time": 85.5,
+			"lyric": "Сосущие залупу и ебущиеся в сракотан пидоры"
+		  },
+		  {
+			"time": 91,
+			"lyric": "Сиськи Доры"
+		  },
+		  {
+			"time": 93.2,
+			"lyric": "Не поднимают наши пениса"
+		  },
+		  {
+			"time": 98,
+			"lyric": "Мы пидоры, мы пидоры"
+		  },
+		  {
+			"time": 101.5,
+			"lyric": "Сосущие залупу и ебущиеся в сракотан пидоры"
+		  },
+		  {
+			"time": 107,
+			"lyric": "Сиськи Доры"
+		  },
+		  {
+			"time": 109.5,
+			"lyric": "Не поднимают наши"
+		  },
+		  {
+			"time": 112.5,
+			"lyric": "Но поднимают ваши"
+		  },
+      {
+			"time": 116,
+			"lyric": "Я видел сиськи Доры"
+		  },
+      {
+			"time": 117.8,
+			"lyric": "Это кусок позора"
+		  },
+      {
+			"time": 119.8,
+			"lyric": "Два кожаных мешочка бесполезных"
+		  },
+      {
+			"time": 123.8,
+			"lyric": "Другое дело - Эдик"
+		  },
+      {
+			"time": 125.8,
+			"lyric": "Он эталонный педик"
+		  },
+      {
+			"time": 127.8,
+			"lyric": "Хочу чтоб в попочку скорей залез мне"
+		  },
+      {
+			"time": 131.5,
+			"lyric": "Раф на дне стакана"
+		  },
+      {
+			"time": 133.3,
+			"lyric": "В колонках трек Макана"
+		  },
+      {
+			"time": 135.5,
+			"lyric": "Эль вкусо дель спермо"
+		  },
+      {
+			"time": 137.5,
+			"lyric": "Я пидорас, наверно"
+		  },
+      {
+			"time": 140,
+			"lyric": "Мы пидоры, мы пидоры"
+		  },
+		  {
+			"time": 143.5,
+			"lyric": "Сосущие залупу и ебущиеся в сракотан пидоры"
+		  },
+		  {
+			"time": 149,
+			"lyric": "Сиськи Доры"
+		  },
+		  {
+			"time": 151.5,
+			"lyric": "Не поднимают наши пениса"
+		  },
+		  {
+			"time": 156,
+			"lyric": "Мы пидоры, мы пидоры"
+		  },
+		  {
+			"time": 159.5,
+			"lyric": "Сосущие залупу и ебущиеся в сракотан пидоры"
+		  },
+		  {
+			"time": 165,
+			"lyric": "Сиськи Доры"
+		  },
+		  {
+			"time": 167.5,
+			"lyric": "Не поднимают наши"
+		  },
+		  {
+			"time": 170.5,
+			"lyric": "Но поднимают ваши"
+		  },
+      
+
+		]
+
+        let currentLyricIndex = 0;
+        let isPlaying = false;
+        let interval;
+
+        function startPlayback() {
+            if (isPlaying) return;
+            isPlaying = true;
+            currentLyricIndex = 0;
+            audioPlayer.currentTime = 0;
+            videoPlayer.currentTime = 0;
+            audioPlayer.play();
+            videoPlayer.play();
+            renderLyrics();
+            interval = setInterval(syncLyrics, 100);
+        }
+
+        function syncLyrics() {
+            if (currentLyricIndex >= lrcData.length) {
+                clearInterval(interval);
+                return;
+            }
+            const currentLyric = lrcData[currentLyricIndex];
+            if (audioPlayer.currentTime >= currentLyric.time) {
+                highlightLyric(currentLyricIndex);
+                currentLyricIndex++;
+            }
+        }
+
+        function highlightLyric(index) {
+            lyricsContainer.innerHTML = '';
+            const start = Math.max(0, index - 2);
+            const end = Math.min(lrcData.length, index + 3);
+            
+            for (let i = start; i < end; i++) {
+                const p = document.createElement('p');
+                p.textContent = lrcData[i].lyric;
+                p.classList.add(i === index ? 'active-lyric' : 'inactive-lyric');
+                lyricsContainer.appendChild(p);
+            }
+        }
+
+        function renderLyrics() {
+            lyricsContainer.innerHTML = '';
+            lrcData.forEach(line => {
+                const p = document.createElement('p');
+                p.textContent = line.lyric;
+                p.classList.add('inactive-lyric');
+                lyricsContainer.appendChild(p);
+            });
+        }
+
+        playButton.addEventListener('click', startPlayback);
+    </script>
+</body></html>
